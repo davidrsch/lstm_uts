@@ -99,7 +99,7 @@ server <- function(
     # Showing or not page buttons depending on if forecast variable is selected
     # or not
     observeEvent(input$forecast_variable, {
-      if (is.null(input$forecast_variable) | is.na(input$forecast_variable)) {
+      if (is.null(input$forecast_variable) || is.na(input$forecast_variable)) {
         page_button_status("hide")
       } else if (input$forecast_variable == "") {
         page_button_status("hide")
@@ -113,7 +113,7 @@ server <- function(
     # Hide or show page buttons based on if the data imported is
     # a tibble
     observeEvent(data(), {
-      if (!is_tibble(data()) | is.null(data())) {
+      if (!is_tibble(data()) || is.null(data())) {
         page_button_status("hide")
       }
     })

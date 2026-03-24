@@ -169,7 +169,6 @@ server <- function(
     # Setting seed so computations in test are reproducible
     observeEvent(input$startbutton_test, {
       seed_value <- 42
-      print(seed_value)
       set_random_seed(seed_value)
       click("startbutton")
     })

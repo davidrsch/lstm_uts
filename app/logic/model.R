@@ -133,7 +133,7 @@ slide_columns <- function(data, column) {
 # - Else find mean value of each time point along the predictions
 #' @export
 twod_predictions <- function(predictions_3d) {
-  predictions <- predictions_3d[, , 1] |>
+  predictions <- predictions_3d[,, 1] |>
     as_tibble(.name_repair = "unique")
 
   if (dim(predictions)[2] == 1) {
@@ -184,9 +184,9 @@ test_model_flow <- function(data, modeldata) {
   pred_tests <- rep(NA, (amount_pred * tests)) |>
     matrix(ncol = tests) |>
     as_tibble(.name_repair = "unique")
-  names(pred_tests) <- gsub(pattern = "...", "test_", names(pred_tests))
+  names(pred_tests) <- gsub(pattern = "\\.\\.\\.", "test_", names(pred_tests))
 
-  for (i in 1:tests) {
+  for (i in seq_len(tests)) {
     pred_tests[, i] <- model_flow(data, modeldata)
   }
 

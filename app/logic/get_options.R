@@ -1,5 +1,5 @@
 box::use(
-  dplyr[all_of, mutate],
+  dplyr[mutate],
   tibble[tibble],
 )
 
@@ -7,13 +7,11 @@ box::use(
 get_options <- function(names, disabled_op = NULL) {
   options <- tibble(key = names, text = names)
 
-  if (!is.null(disabled_op)) {
-    if (disabled_op != "") {
-      options <- options |>
-        mutate(
-          disabled = is.element(key, all_of(disabled_op))
-        )
-    }
+  if (!is.null(disabled_op) && disabled_op != "") {
+    options <- options |>
+      mutate(
+        disabled = is.element(key, disabled_op)
+      )
   }
 
   options <- options |>

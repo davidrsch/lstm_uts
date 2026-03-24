@@ -1,7 +1,7 @@
 box::use(
   shiny.fluent[Dropdown.shinyInput, SpinButton.shinyInput, Stack],
   shiny.fluent[Text, TextField.shinyInput, updateTextField.shinyInput],
-  shiny[NS, moduleServer, observeEvent, reactive, reactiveVal],
+  shiny[NS, moduleServer, observeEvent, reactive],
 )
 
 box::use(
@@ -147,7 +147,6 @@ server <- function(id, run_button_status) {
 
     # Defining a reactive value and observer to validate that input
     # value is numeric
-    inp_amount_valid <- reactiveVal("")
     observeEvent(input$inp_amount, {
       inp_amount_valid <- gsub("[^0-9,]+", "", input$inp_amount)
       if (inp_amount_valid != input$inp_amount) {
@@ -160,7 +159,6 @@ server <- function(id, run_button_status) {
 
     # Defining a reactive value and observer to validate that LSTM
     # value is numeric
-    lstm_valid <- reactiveVal("")
     observeEvent(input$lstm, {
       lstm_valid <- gsub("[^0-9,]+", "", input$lstm)
       if (lstm_valid != input$lstm) {
